@@ -90,22 +90,28 @@ export function TableSuppliers() {
               Excluir
             </Button>
           </Space>
-
-          <UpdateSupplierModal
-            openModal={updateSupplierModalVisible}
-            setVisibilityModal={setVisibilityUpdateSupplierModal}
-            updatedSupplier={currentSupplier}
-          />
-
-          <ConfirmDeleteSupplierModal
-            openModal={confirmDeleteSupplierVisible}
-            setVisibilityModal={setVisibilitConfirmDeleteSupplierModal}
-            supplierCnpj={supplierCnpj}
-          />
         </>
       ),
     },
   ]
 
-  return <Table columns={columns} dataSource={suppliersVisibles} />
+  return (
+    <>
+      <Table columns={columns} dataSource={suppliersVisibles} />
+      {currentSupplier && (
+        <UpdateSupplierModal
+          openModal={updateSupplierModalVisible}
+          setVisibilityModal={setVisibilityUpdateSupplierModal}
+          updatedSupplier={currentSupplier}
+        />
+      )}
+      {supplierCnpj && (
+        <ConfirmDeleteSupplierModal
+          openModal={confirmDeleteSupplierVisible}
+          setVisibilityModal={setVisibilitConfirmDeleteSupplierModal}
+          supplierCnpj={supplierCnpj}
+        />
+      )}
+    </>
+  )
 }
